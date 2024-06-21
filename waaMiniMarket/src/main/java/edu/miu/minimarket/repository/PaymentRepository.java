@@ -1,0 +1,7 @@
+package edu.miu.minimarket.repository;
+
+import edu.miu.minimarket.entity.Payment;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface PaymentRepository extends JpaRepository<Payment, Long> {
+}
