@@ -3,6 +3,13 @@
 ## Overview
 This project is an engineering proof of concept aimed at providing hands-on experience in building a full-stack application using Spring and React technologies. The project involves developing a Mini Online Market where different roles (Admin, Seller, and Buyer) interact with the system to manage products, orders, and reviews.
 
+##Team Members
+Yohannes Haile - 617573
+Kirubel Mengesha - 117574
+Erick Mgongo - 617566
+Luwan Weldetensae - 117656
+Petros Mengistu - 617320
+
 ## Project Requirements
 
 ### Admin
