@@ -1,4 +1,4 @@
-# MiniMarketBackEndWAA
+# MiniMarket Project WAA Maharishi
 
 ## Overview
 This project is an engineering proof of concept aimed at providing hands-on experience in building a full-stack application using Spring and React technologies. The project involves developing a Mini Online Market where different roles (Admin, Seller, and Buyer) interact with the system to manage products, orders, and reviews.
