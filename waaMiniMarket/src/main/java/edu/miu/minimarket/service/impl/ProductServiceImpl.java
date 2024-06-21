@@ -87,8 +87,16 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public List<ProductResponse> filterProducts(Map<String, String> filters) {
-        // Custom query logic based on filters
-        List<Product> products = productRepository.findAll(); // Replace with actual query based on filters
+        String category = filters.get("category");
+        String subcategory = filters.get("subcategory");
+        String brand = filters.get("brand");
+        Double minPrice = filters.get("minPrice") != null ? Double.parseDouble(filters.get("minPrice")) : null;
+        Double maxPrice = filters.get("maxPrice") != null ? Double.parseDouble(filters.get("maxPrice")) : null;
+        Integer minRating = filters.get("minRating") != null ? Integer.parseInt(filters.get("minRating")) : null;
+        Boolean available = filters.get("available") != null ? Boolean.parseBoolean(filters.get("available")) : null;
+
+        List<Product> products = productRepository.filterProducts(category, subcategory, brand, minPrice, maxPrice, minRating, available);
+
         return products.stream()
                 .map(product -> new ProductResponse(product.getId(), product.getName(), product.getDescription(),
                         product.getPrice(), product.getStockQuantity(), product.getCategory(),
@@ -96,6 +104,7 @@ public class ProductServiceImpl implements ProductService {
                         product.getImage() != null ? product.getImage().getLink() : null))
                 .collect(Collectors.toList());
     }
+
 
     @Override
     public List<ReviewResponse> filterReviews(Long buyerId, Long sellerId, Long productId) {

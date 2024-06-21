@@ -11,14 +11,14 @@ import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class AwesomeUserDetails implements UserDetails {
+public class MarketUserDetails implements UserDetails {
 
     private String email;
     @JsonIgnore
     private String password;
     private List<Role> roles;
 
-    public AwesomeUserDetails(User user) {
+    public MarketUserDetails(User user) {
         this.email = user.getEmail();
         this.password = user.getPassword();
         this.roles = user.getRoles();
