@@ -9,7 +9,7 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>edu.miu</groupId>
-    <artifactId>waaMiniMarket</artifactId>
+    <artifactId>waaMiniMarketBack</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>waaMiniMarket</name>
     <description>Mini Market Application</description>
