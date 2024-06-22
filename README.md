@@ -1,14 +1,14 @@
-# MiniMarketBackEndWAA
+# MiniMarket Project WAA Maharishi
 
 ## Overview
 This project is an engineering proof of concept aimed at providing hands-on experience in building a full-stack application using Spring and React technologies. The project involves developing a Mini Online Market where different roles (Admin, Seller, and Buyer) interact with the system to manage products, orders, and reviews.
 
-##Team Members
-Yohannes Haile - 617573
-Kirubel Mengesha - 117574
-Erick Mgongo - 617566
-Luwan Weldetensae - 117656
-Petros Mengistu - 617320
+## Team Members
+- Yohannes Haile - 617573
+- Kirubel Mengesha - 117574
+- Erick Mgongo - 617566
+- Luwan Weldetensae - 117656
+- Petros Mengistu - 617320
 
 ## Project Requirements
 
@@ -63,6 +63,70 @@ Petros Mengistu - 617320
 - Create a video showcasing the functionalities of your project.
 - Only one project should be submitted per group.
 - **Due Date:** June 20, 2024 (Thursday) 11:00 PM – could be extended to June 21 if required.
+
+## Document how to configure/install the application
+
+### Prerequisites
+- **Java Development Kit (JDK) 17**
+- **Spring Boot**
+- **PostgreSQL** database
+- **SendGrid API** (for sending emails)
+- **IntelliJ IDEA** (for backend development)
+- **Postman** (for testing API endpoints)
+- **Node.js** (for frontend development)
+- **Visual Studio Code** (for frontend development)
+
+### Backend Setup
+
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/yohannesxyz/miniMarketWAA.git
+   cd miniMarketWAA/backend
+Configure PostgreSQL:
+
+Install PostgreSQL and create a database.
+Update application.properties with your database credentials:
+properties
+
+spring.datasource.url=jdbc:postgresql://localhost:5432/minimarket
+spring.datasource.username=your-username
+spring.datasource.password=your-password
+spring.jpa.hibernate.ddl-auto=update
+Configure SendGrid:
+
+Sign up for SendGrid and get your API key.
+Update application.properties with your SendGrid credentials:
+properties
+
+spring.sendgrid.api-key=your-sendgrid-api-key
+Build and run the application:
+
+bash
+
+./mvnw clean install
+./mvnw spring-boot:run
+Frontend Setup
+Clone the frontend repository:
+
+bash
+
+cd ../frontend
+Install dependencies:
+
+bash
+
+npm install
+Start the development server:
+
+bash
+npm start
+
+###Testing the API
+Open Postman and import the collection from postman-collection.json located in the backend repository.
+
+##Test Endpoints:
+
+Use Postman to test the various endpoints (e.g., user registration, product management, order management).
 
 ## Product-Specific Filters
 - **Category/Subcategory:** Filters products based on predefined categories (e.g., Electronics, Clothing, Home Appliances).
