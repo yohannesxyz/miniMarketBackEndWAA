@@ -3,37 +3,44 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import React from "react";
 import Saler from './Saler';
+import Cookies from 'js-cookie';
 
 const Salers = () => {
     const [salersState, setSellersState] = useState([
-        {
-            "id": 1,
-            "name": "John's Electronics",
-            "description": "A trusted seller of quality electronic products.",
-            "location": "New York, USA",
-            "rating": 4.5,
-            "totalSales": 2500
-        },
-        {
-            "id": 2,
-            "name": "Furniture World",
-            "description": "Stylish and affordable furniture for your home.",
-            "location": "San Francisco, USA",
-            "rating": 4.7,
-            "totalSales": 1500
-        },
-        {
-            "id": 3,
-            "name": "Fashion Hub",
-            "description": "Trendy fashion apparel for all ages.",
-            "location": "Los Angeles, USA",
-            "rating": 4.3,
-            "totalSales": 3200
-        }
+        // {
+        //     "id": 1,
+        //     "name": "John's Electronics",
+        //     "description": "A trusted seller of quality electronic products.",
+        //     "location": "New York, USA",
+        //     "rating": 4.5,
+        //     "totalSales": 2500
+        // },
+        // {
+        //     "id": 2,
+        //     "name": "Furniture World",
+        //     "description": "Stylish and affordable furniture for your home.",
+        //     "location": "San Francisco, USA",
+        //     "rating": 4.7,
+        //     "totalSales": 1500
+        // },
+        // {
+        //     "id": 3,
+        //     "name": "Fashion Hub",
+        //     "description": "Trendy fashion apparel for all ages.",
+        //     "location": "Los Angeles, USA",
+        //     "rating": 4.3,
+        //     "totalSales": 3200
+        // }
     ]);
 
     const fetchSalers = () => {
-        axios.get('http://localhost:8081/api/sellers')
+        axios.get('http://localhost:8081/api/sellers',
+            {
+                headers: {
+                    'Authorization': 'Bearer '+Cookies.get('token')
+                }
+            }
+        )
             .then(response => {
                 setSellersState(response.data.data);
             })

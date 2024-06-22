@@ -9,9 +9,15 @@ const DashProducts = ({ formVisible, setFormVisible }) => {
     const [productsState, setProductsState] = useState([]);
 
     const fetchProducts = () => {
-        axios.get('localhost:8081/api/sellers/products?sellerId='+JSON.parse(Cookies.get("user")).id)
+        axios.get('http://localhost:8081/api/sellers/products?sellerId='+JSON.parse(Cookies.get("user")).id,
+    {
+        headers: {
+            "Content-Type" : "application/json",
+            'Authorization': 'Bearer '+Cookies.get('token')
+        }
+    })
             .then(response => {
-                setProductsState(response.data);
+                setProductsState(response.data.data);
             })
             .catch(error => {
                 // alert(error.message);

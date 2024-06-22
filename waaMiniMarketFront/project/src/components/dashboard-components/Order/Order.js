@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
+import Cookies from 'js-cookie';
 
 const DashOrder = ({ buyerid, id, quantity, address, price, status }) => {
     const [buyer, setBuyer] = useState({});
@@ -8,9 +9,14 @@ const DashOrder = ({ buyerid, id, quantity, address, price, status }) => {
     const [error, setError] = useState('');
     const [showModal, setShowModal] = useState(false);
 
+
     const fetchBuyer = async () => {
         try {
-            const response = await axios.get(`http://localhost:8081/api/buyers/${buyerid}`);
+            const response = await axios.get(`http://localhost:8081/api/buyers/${buyerid}`, {
+                headers: {
+                    'Authorization': 'Bearer '+Cookies.get('token')
+                }
+            });
             setBuyer(response.data);
             setLoading(false);
         } catch (error) {

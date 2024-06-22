@@ -23,7 +23,12 @@ export default function Topbar() {
         setError(null);
 
         try {
-            const response = await axios.get(`http://localhost:8081/api/buyers/cart?buyerId=${JSON.parse(Cookies.get('user')).id}`);
+            const response = await axios.get(`http://localhost:8081/api/buyers/cart?buyerId=${JSON.parse(Cookies.get('user')).id}`,
+        {
+            headers: {
+                'Authorization': 'Bearer '+Cookies.get('token')
+            }
+        });
             const cartData = response.data.cartItems;
             const productIds = cartData.map(item => item.productId);
             const productResponse = await axios.get('http://localhost:8081/api/products');

@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react'
 import axios from 'axios'; 
 import React from "react";
 import DashSaler from './Saler';
+import Cookies from 'js-cookie';
 
 const DashSalers = () => {
 
@@ -36,7 +37,13 @@ const DashSalers = () => {
     );
 
     const fetchSalers = () => {
-        axios.get('http://localhost:8081/api/sellers')
+        axios.get('http://localhost:8081/api/sellers',
+            {
+                headers: {
+                    'Authorization': 'Bearer '+Cookies.get('token')
+                }
+            }
+        )
             .then(response => {
                 setSellersState(response.data.data);
             })

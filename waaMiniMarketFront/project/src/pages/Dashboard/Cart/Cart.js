@@ -31,11 +31,23 @@ const Cart = () => {
     setError(null);
 
     try {
-      const response = await axios.get(`http://localhost:8081/api/buyers/cart?buyerId=${buyerId}`);
+      const response = await axios.get(`http://localhost:8081/api/buyers/cart?buyerId=${buyerId}`,
+        {
+          headers: {
+              'Authorization': 'Bearer '+Cookies.get('token')
+          }
+      }
+      );
       const cartData = response.data.cartItems;
 
       const productIds = cartData.map(item => item.productId);
-      const productResponse = await axios.get('http://localhost:8081/api/products');
+      const productResponse = await axios.get('http://localhost:8081/api/products',
+        {
+          headers: {
+              'Authorization': 'Bearer '+Cookies.get('token')
+          }
+      }
+      );
       const productData = productResponse.data.filter(product => productIds.includes(product.id));
 
       const cartItemsWithDetails = cartData.map(cartItem => {
@@ -80,6 +92,7 @@ const Cart = () => {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
+          'Authorization': 'Bearer '+Cookies.get('token')
         },
         body: JSON.stringify({ buyerId, productId, quantity: newQuantity }),
       });
@@ -93,14 +106,16 @@ const Cart = () => {
         newQuantity > 0 ? incrementHandler() : decrementHandler();
       }
     } catch (error) {
-      alert('Failed to update item in cart:', error);
+   
     }
   };
 
   const handleRemoveItem = async (itm) => {
     try {
       const response = await axios.delete(`http://localhost:8081/api/buyers/cart/items/${itm.id}`, {
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 'Content-Type': 'application/json',
+          'Authorization': 'Bearer '+Cookies.get('token')
+         },
         params: { buyerId },
       });
       if (response.status === 200) {

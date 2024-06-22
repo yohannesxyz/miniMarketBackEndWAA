@@ -8,7 +8,12 @@ const DashOrders = () => {
     const [productsState, setProductsState] = useState([]);
 
     const fetchProducts = () => {
-        axios.get('http://localhost:8081/api/sellers/orders?sellerId='+JSON.parse(Cookies.get("user")).id)
+        axios.get('http://localhost:8081/api/sellers/orders?sellerId='+JSON.parse(Cookies.get("user")).id,
+    {
+        headers: {
+            'Authorization': 'Bearer '+Cookies.get('token')
+        }
+    })
             .then(response => {
                 setProductsState(response.data.data);
             })

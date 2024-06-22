@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import Cookies from "js-cookie";
 
 const DashSaler = (props) => {
     const [approval, setApproved] = useState(props.approval);
@@ -10,6 +11,11 @@ const DashSaler = (props) => {
             const response = await axios.post('http://localhost:8081/api/admin/approve-seller/'+props.id, {
                 id: props.id,
                 approved: true
+            },
+            {
+                headers: {
+                    'Authorization': 'Bearer '+Cookies.get('token')
+                }
             });
             if (response.data.approved) {
                 setApproved(true);

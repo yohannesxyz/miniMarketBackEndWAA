@@ -11,8 +11,11 @@ const DashProduct = ({ id, name, category, price, stock, onDelete }) => {
             const response = await fetch(`http://localhost:8081/api/sellers/products/${id}`, {
                 method: 'DELETE',
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer '+Cookies.get('token')
                 }
+
+                
             });
 
             if (response.ok) {

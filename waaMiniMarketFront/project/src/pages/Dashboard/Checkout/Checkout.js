@@ -59,6 +59,7 @@ const Checkout = () => {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          'Authorization': 'Bearer '+Cookies.get('token')
         },
         body: JSON.stringify(orderDetails),
       });

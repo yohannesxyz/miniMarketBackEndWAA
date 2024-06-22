@@ -30,7 +30,12 @@ const BuyerOrdersPage = () => {
   useEffect(() => {
     const fetchOrders = async () => {
       try {
-        const response = await axios.get('http://localhost:8081/api/buyers/orders?buyerId='+JSON.parse(Cookies.get("user")).id);
+        const response = await axios.get('http://localhost:8081/api/buyers/orders?buyerId='+JSON.parse(Cookies.get("user")).id,
+        {
+          headers: {
+              'Authorization': 'Bearer '+Cookies.get('token')
+          }
+      });
         setOrders(response.data);
       } catch (error) {
         alert('Failed to fetch orders:', error);
@@ -44,7 +49,13 @@ const BuyerOrdersPage = () => {
 
   const handleCancelOrder = async (id) => {
     try {
-      await axios.put(`http://localhost:8081/api/buyers/orders/${id}/cancel`, { orderStatus: "CANCELLED" });
+      await axios.put(`http://localhost:8081/api/buyers/orders/${id}/cancel`, { orderStatus: "CANCELLED" },
+        {
+          headers: {
+              'Authorization': 'Bearer '+Cookies.get('token')
+          }
+      }
+      );
       window.location.reload();
     } catch (error) {
       console.error(error.message);

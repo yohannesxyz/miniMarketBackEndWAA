@@ -28,11 +28,23 @@ const CartDetails = ({ setParentTotal, setProducts, setCartItemsFromCh }) => {
     setError(null);
 
     try {
-      const response = await axios.get(`http://localhost:8081/api/buyers/cart?buyerId=${buyerId}`);
+      const response = await axios.get(`http://localhost:8081/api/buyers/cart?buyerId=${buyerId}`,
+        {
+          headers: {
+              'Authorization': 'Bearer '+Cookies.get('token')
+          }
+      }
+      );
       const cartData = response.data.cartItems;
 
       const productIds = cartData.map(item => item.productId);
-      const productResponse = await axios.get('http://localhost:8081/api/products');
+      const productResponse = await axios.get('http://localhost:8081/api/products',
+        {
+          headers: {
+              'Authorization': 'Bearer '+Cookies.get('token')
+          }
+      }
+      );
       const productData = productResponse.data.filter(product => productIds.includes(product.id));
 
       const cartItemsWithDetails = cartData.map(cartItem => {
@@ -56,8 +68,7 @@ const CartDetails = ({ setParentTotal, setProducts, setCartItemsFromCh }) => {
 
       setLoading(false);
     } catch (error) {
-        alert('Error fetching cart items:');
-      setError('Error fetching cart items. Please try again later.');
+    
       setLoading(false);
     }
   };
@@ -68,7 +79,12 @@ const CartDetails = ({ setParentTotal, setProducts, setCartItemsFromCh }) => {
         buyerId,
         productId,
         quantity
-      });
+      },
+      {
+        headers: {
+            'Authorization': 'Bearer '+Cookies.get('token')
+        }
+    });
 
       if (response.data.success) {
         fetchCartItems();
@@ -76,7 +92,7 @@ const CartDetails = ({ setParentTotal, setProducts, setCartItemsFromCh }) => {
         else decrementHandler();
       }
     } catch (error) {
-        alert('Error updating cart:');
+        
       setError('Error updating cart. Please try again later.');
     }
   };

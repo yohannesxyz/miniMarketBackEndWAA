@@ -5,6 +5,7 @@ import edu.miu.minimarket.filter.JwtFilter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
@@ -48,6 +49,7 @@ public class SecurityConfig {
                 .requestMatchers("/api/v1/authenticate/**").permitAll()
                 .requestMatchers("/api/buyers/register").permitAll()
                 .requestMatchers("/api/sellers/register").permitAll()
+                .requestMatchers(HttpMethod.GET, "/api/sellers").permitAll()
                 .requestMatchers("/api/products/**").permitAll()
                 .requestMatchers("/api/admin/**").hasAnyAuthority("ADMIN")
                 .requestMatchers("/api/buyers/**").hasAnyAuthority("BUYER", "ADMIN")

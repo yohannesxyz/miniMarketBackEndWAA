@@ -43,7 +43,11 @@ const AddProductForm = ({ formVisible, onProductAdded, setFormVisible }) => {
             year: 2023
         };
 
-        axios.post('http://localhost:8081/api/sellers/products', newProduct)
+        axios.post('http://localhost:8081/api/sellers/products', newProduct, {
+            headers: {
+                'Authorization': 'Bearer '+Cookies.get('token')
+            }
+        })
             .then(response => {
                 
                 setName('');

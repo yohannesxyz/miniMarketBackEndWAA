@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import DashReview from './Review';
 import axios from 'axios';
+import Cookies from 'js-cookie';
 
 export default function DashReviews() {
   const [reviews, setReviews] = useState([]);
@@ -9,11 +10,21 @@ export default function DashReviews() {
   useEffect(() => {
     const fetchProductsAndReviews = async () => {
       try {
-        const productsResponse = await axios.get('http://localhost:8081/api/products');
+        const productsResponse = await axios.get('http://localhost:8081/api/products',
+          {
+              headers: {
+                  'Authorization': 'Bearer '+Cookies.get('token')
+              }
+          });
         const products = productsResponse.data;
 
         const reviewsPromises = products.map(product =>
-          axios.get(`http://localhost:8081/api/products/${product.id}/reviews`)
+          axios.get(`http://localhost:8081/api/products/${product.id}/reviews`,
+            {
+                headers: {
+                    'Authorization': 'Bearer '+Cookies.get('token')
+                }
+            })
         );
 
         const reviewsResponses = await Promise.all(reviewsPromises);
