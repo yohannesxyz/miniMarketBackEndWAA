@@ -12,9 +12,14 @@ const DashInventories = () => {
             
         ]
     );
-
+    const token = Cookies.get('token');
+const user = Cookies.get('userId');
     const fetchProducts = () => {
-        axios.get('localhost:8081/api/sellers/products?sellerId='+JSON.parse(Cookies.get("user")).id)
+        axios.get(`localhost:8081/api/sellers/products?sellerId=${user}`,{
+            headers: {
+                'Authorization': 'Bearer ' + token
+              }
+        })
             .then(response => {
                 setProductsState(response.data);
             })

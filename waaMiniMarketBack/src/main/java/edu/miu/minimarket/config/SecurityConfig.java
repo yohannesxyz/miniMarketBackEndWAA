@@ -49,7 +49,7 @@ public class SecurityConfig {
                 .requestMatchers("/api/v1/authenticate/**").permitAll()
                 .requestMatchers("/api/buyers/register").permitAll()
                 .requestMatchers("/api/sellers/register").permitAll()
-                .requestMatchers(HttpMethod.GET, "/api/sellers").permitAll()
+                .requestMatchers(HttpMethod.GET, "/api/sellers/**").permitAll()
                 .requestMatchers("/api/products/**").permitAll()
                 .requestMatchers("/api/admin/**").hasAnyAuthority("ADMIN")
                 .requestMatchers("/api/buyers/**").hasAnyAuthority("BUYER", "ADMIN")
