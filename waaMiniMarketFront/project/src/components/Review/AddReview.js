@@ -15,13 +15,21 @@ export default function AddReview({ productId, onReviewAdded }) {
       rating: parseInt(rating),
       comment,
       productId,
-      buyerId: 4, 
+      buyerId: Cookies.get('userId'), 
       name,
       email
     };
 
     try {
-      const response = await axios.post('http://localhost:8081/api/buyers/reviews', newReview);
+      const response = await axios.post(
+        'http://localhost:8081/api/buyers/reviews',
+        newReview,
+        {
+          headers: {
+            'Authorization': 'Bearer ' + Cookies.get('token')
+          }
+        }
+      );
       
       // Clear the form
       setRating('');

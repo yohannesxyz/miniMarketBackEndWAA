@@ -32,6 +32,7 @@ const Login = (props) => {
       Cookies.set('role', res.data.roles[0]);
       // Assuming res.data is an object
       Cookies.set('user', JSON.stringify(res.data));
+      Cookies.set('userId', JSON.stringify(res.data.id));
        alert("Log in Succesfully")
 
       navigate(from, { replace: true });
