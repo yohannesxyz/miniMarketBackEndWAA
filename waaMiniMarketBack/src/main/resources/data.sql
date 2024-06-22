@@ -62,3 +62,6 @@ INSERT INTO public.products (id, best_seller, brand, category, color, compatibil
 INSERT INTO public.products (id, best_seller, brand, category, color, compatibility, created_at, deleted, description, discount, features, material, model, name, new_arrival, on_sale, price, rating, size, stock_quantity, subcategory, updated_at, year, image_id, seller_id) VALUES (3, null, 'samsung', 'Electronics', null, null, '2024-06-22 12:51:56.129023', null, 'Monitor', null, null, null, null, 'TV', null, null, 2938, null, null, 8, 'tv', '2024-06-22 12:51:56.129023', null, 6, 200);
 
 INSERT INTO public.reviews (id, comment, created_at, rating, updated_at, buyer_id, product_id) VALUES (1, 'worst bag ever', '2024-06-22 13:12:10.781457', 3, '2024-06-22 13:12:10.781457', 300, 2);
+
+INSERT INTO public.orders (id, billing_address, created_at, order_status, shipping_address, total_price, updated_at, buyer_id) VALUES (1, '{"name":"erick","address":"fairfield","city":"Fairfield","state":"IA","zip":"52557"}', '2024-06-22 13:19:22.512604', 'CANCELLED', '{"name":"erick","address":"fairfield","city":"Fairfield","state":"IA","zip":"52557"}', 320, '2024-06-22 13:20:35.348330', 300);
+INSERT INTO public.order_items (id, created_at, price, quantity, updated_at, order_id, product_id) VALUES (1, '2024-06-22 13:19:22.528785', 320, 1, '2024-06-22 13:19:22.528785', 1, 2);

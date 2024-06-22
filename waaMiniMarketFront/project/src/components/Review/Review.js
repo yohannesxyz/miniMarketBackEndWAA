@@ -5,11 +5,15 @@ export default function Review({ review }) {
 
   const [buyer, setBuyer] = useState({})
 
-
+  const token = Cookies.get('token');
   useEffect(() => {
     const fetchReviews = async () => {
       try {
-        const response = await fetch(`http://localhost:8081/api/buyers/${review.buyerId}`);
+        const response = await fetch(`http://localhost:8081/api/buyers/${review.buyerId}`, {
+          headers: {
+            'Authorization': 'Bearer ' + token
+          }
+        });
         const data = await response.json();
         setBuyer(data);
       
